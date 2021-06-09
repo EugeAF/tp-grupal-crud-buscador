@@ -1,16 +1,20 @@
 let contenido = document.querySelector('#container');
 let tecnologia = JSON.parse(localStorage.getItem('contenido')) || [];
 
-function listarContenido(){
+let myModal = new bootstrap.Modal(document.getElementById('edicionModal'), {
+    keyboard: false
+})
+
+function listarContenido() {
     contenido.innerHTML = '';
 
-    tecnologia.forEach(function(item,index){
+    tecnologia.forEach(function (item, index) {
         contenido.innerHTML += `
         <tr>
                 <th scope="row">${index}</th>
                 <td>${item.modelo}</td>
                 <td>
-                    <button type="button" class="btn btn-secondary" onclick="setEditModal(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal2">Editar</button>
+                    <button type="button" class="btn btn-secondary" onclick="setEditModal(${index})" data-bs-toggle="modal">Editar</button>
                     <button class="btn btn-danger" onclick="eliminarProducto(${index})">Eliminar</button>
                 </td>
                 <td>${item.estado}</td>
@@ -29,17 +33,22 @@ function agregarProducto() {
     let imagen = document.querySelector('#Imagen').value;
     let precio = document.querySelector('#Precio').value;
 
-    tecnologia.push({
-        modelo: modelo,
-        estado: estado,
-        imagen: imagen,
-        precio: precio
-    });
-    localStorage.setItem('contenido', JSON.stringify(tecnologia));
-    listarContenido();
+    //Validacion de campos
+    if (modelo != "" && estado != "" && imagen != "" && precio != "") {
+        tecnologia.push({
+            modelo: modelo,
+            estado: estado,
+            imagen: imagen,
+            precio: precio
+        });
+        localStorage.setItem('contenido', JSON.stringify(tecnologia));
+        listarContenido();
+    } else {
+        alert("Completar campos antes de guardar")
+    }
 }
 
-function eliminarProducto(index){
+function eliminarProducto(index) {
     tecnologia.splice(index, 1);
     listarContenido();
     localStorage.setItem('contenido', JSON.stringify(""));
@@ -54,7 +63,9 @@ let editarProducto = function () {
     let precio = document.querySelector('#editarPrecio').value;
     let index = event.target.dataset.index;
 
-            tecnologia[index] = {
+    //Validacion
+    if (modelo != "" && estado != "" && imagen != "" && precio != "") {
+        tecnologia[index] = {
             modelo: modelo,
             estado: estado,
             imagen: imagen,
@@ -64,17 +75,33 @@ let editarProducto = function () {
         localStorage.setItem('contenido', JSON.stringify(tecnologia));
 
         listarContenido();
+        myModal.hide();
+    } else {
+        alert("Completar Campo")
     }
+}
 
-    function setEditModal(index) {
-        let editBtn = document.getElementById("EditBTN");
-        editBtn.setAttribute("data-index", index);
-    
-        document.querySelector('#editarModelo').value = tecnologia[index].modelo;
-        document.querySelector('#editarEstado').value = tecnologia[index].estado;
-        document.querySelector('#editarImagen').value = tecnologia[index].imagen;
-        document.querySelector('#editarPrecio').value = tecnologia[index].precio;
+function setEditModal(index) {
+    let editBtn = document.getElementById("EditBTN");
+    editBtn.setAttribute("data-index", index);
 
-    }
+    document.querySelector('#editarModelo').value = tecnologia[index].modelo;
+    document.querySelector('#editarEstado').value = tecnologia[index].estado;
+    document.querySelector('#editarImagen').value = tecnologia[index].imagen;
+    document.querySelector('#editarPrecio').value = tecnologia[index].precio;
+
+    myModal.show();
+}
 
 listarContenido();
+
+const buscarProducto = () => {
+    const word = document.querySelector('#busqueda').value;
+    console.log(word);
+
+    tecnologia = JSON.parse(localStorage.getItem('contenido')) || [];
+    tecnologia = tecnologia.filter(elemento => elemento.modelo.includes(word) || elemento.precio == word);
+    console.log(tecnologia)
+
+    listarContenido();
+}
