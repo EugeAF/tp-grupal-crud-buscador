@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <link rel="stylesheet" href="">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,8 +21,9 @@
     </button>
     <!-- Buscador -->
     <label for="fname">Buscador</label>
-    <input type="text" placeholder="Ej: Televisor" id="busqueda"> 
-    <button type="button" class="btn btn-primary" data-bs-target="#exampleModal" onclick="buscarProducto()">Buscar </buttontype></button>
+    <input type="text" placeholder="Ej: Televisor" id="busqueda">
+    <button type="button" class="btn btn-primary" data-bs-target="#exampleModal" onclick="buscarProducto()">Buscar
+        </buttontype></button>
     <!-- Buscador -->
     <table class="table">
         <thead>
@@ -33,7 +35,7 @@
                 <th scope="col">Imagen</th>
                 <th scope="col">Precio</th>
             </tr>
-        </thead>
+            </head>
         <tbody id="container">
 
         </tbody>
@@ -48,7 +50,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="crearModal">
                         <div class="mb-4">
                             <label for="Modelo" class="form-label">Modelo</label>
                             <input type="text" class="form-control" id="Modelo" aria-describedby="emailHelp">
@@ -69,48 +71,50 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" onclick="agregarProducto()" data-bs-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        onclick="agregarProducto()">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!--Modal Editar-->
- <!-- Modal edicion-->
- <div class="modal fade" id="edicionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edicion</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Modal edicion-->
+    <div class="modal fade" id="edicionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edicion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-4">
+                            <label for="editarModelo" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" id="editarModelo" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-4">
+                            <label for="editarEstado" class="form-label">Estado</label>
+                            <textarea class="form-control" id="editarEstado"></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="editarImagen" class="form-label">Imagen</label>
+                            <input type="text" class="form-control" id="editarImagen" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-4">
+                            <label for="editarPrecio" class="form-label">Precio</label>
+                            <input type="text" class="form-control" id="editarPrecio" aria-describedby="emailHelp">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="EditBTN" onclick="editarProducto()">Guardar
+                        Cambios</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-4">
-              <label for="editarModelo" class="form-label">Modelo</label>
-              <input type="text" class="form-control" id="editarModelo" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-4">
-              <label for="editarEstado" class="form-label">Estado</label>
-              <textarea class="form-control" id="editarEstado"></textarea>
-            </div>
-            <div class="mb-4">
-              <label for="editarImagen" class="form-label">Imagen</label>
-              <input type="text" class="form-control" id="editarImagen" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-4">
-                <label for="editarPrecio" class="form-label">Precio</label>
-                <input type="text" class="form-control" id="editarPrecio" aria-describedby="emailHelp">
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="EditBTN" onclick="editarProducto()">Guardar Cambios</button>
-          </div>
-      </div>
     </div>
-  </div>
 
 
 

@@ -14,7 +14,7 @@ function listarContenido() {
                 <th scope="row">${index}</th>
                 <td>${item.modelo}</td>
                 <td>
-                    <button type="button" class="btn btn-secondary" onclick="setEditModal(${index})" data-bs-toggle="modal">Editar</button>
+                    <button type="button" class="btn btn-secondary" onclick="setEditModal(${index})" data-bs-toggle="modal" >Editar</button>
                     <button class="btn btn-danger" onclick="eliminarProducto(${index})">Eliminar</button>
                 </td>
                 <td>${item.estado}</td>
@@ -28,12 +28,13 @@ function listarContenido() {
 listarContenido()
 
 function agregarProducto() {
+    //limpieza de campos
+    let formAgregarProducto = document.querySelector('#crearModal');
     let modelo = document.querySelector('#Modelo').value;
     let estado = document.querySelector('#Estado').value;
     let imagen = document.querySelector('#Imagen').value;
     let precio = document.querySelector('#Precio').value;
-
-    //Validacion de campos
+    //Validacion de campos vacios
     if (modelo != "" && estado != "" && imagen != "" && precio != "") {
         tecnologia.push({
             modelo: modelo,
@@ -42,29 +43,31 @@ function agregarProducto() {
             precio: precio
         });
         localStorage.setItem('contenido', JSON.stringify(tecnologia));
+        let formAgregarProducto = document.querySelector('#crearModal');
+        formAgregarProducto.reset();
         listarContenido();
-    } else {
-        alert("Completar campos antes de guardar")
+    } else { (alert("Completar campos antes de guardar")) }
+}
+function eliminarProducto(index) {
+    let confirmar = confirm("Esta seguro de eliminar?");
+    if (confirmar) {
+        tecnologia.splice(index, 1);
+        listarContenido();
+        localStorage.setItem('contenido', JSON.stringify(""));
     }
 }
 
-function eliminarProducto(index) {
-    tecnologia.splice(index, 1);
-    listarContenido();
-    localStorage.setItem('contenido', JSON.stringify(""));
-}
-
-
 
 let editarProducto = function () {
+
     let modelo = document.querySelector('#editarModelo').value;
     let estado = document.querySelector('#editarEstado').value;
     let imagen = document.querySelector('#editarImagen').value;
     let precio = document.querySelector('#editarPrecio').value;
     let index = event.target.dataset.index;
-
     //Validacion
     if (modelo != "" && estado != "" && imagen != "" && precio != "") {
+
         tecnologia[index] = {
             modelo: modelo,
             estado: estado,
@@ -76,20 +79,20 @@ let editarProducto = function () {
 
         listarContenido();
         myModal.hide();
-    } else {
-        alert("Completar Campo")
-    }
+    } else (alert("Completar Campo"))
 }
+
+
 
 function setEditModal(index) {
     let editBtn = document.getElementById("EditBTN");
     editBtn.setAttribute("data-index", index);
 
+
     document.querySelector('#editarModelo').value = tecnologia[index].modelo;
     document.querySelector('#editarEstado').value = tecnologia[index].estado;
     document.querySelector('#editarImagen').value = tecnologia[index].imagen;
     document.querySelector('#editarPrecio').value = tecnologia[index].precio;
-
     myModal.show();
 }
 
@@ -105,3 +108,9 @@ const buscarProducto = () => {
 
     listarContenido();
 }
+
+
+
+
+
+
