@@ -5,6 +5,10 @@ let myModal = new bootstrap.Modal(document.getElementById('edicionModal'), {
     keyboard: false
 })
 
+let myModal1 = new bootstrap.Modal(document.getElementById('exampleModal'), {
+    keyboard: false
+})
+
 function listarContenido() {
     contenido.innerHTML = '';
 
@@ -46,6 +50,7 @@ function agregarProducto() {
         let formAgregarProducto = document.querySelector('#crearModal');
         formAgregarProducto.reset();
         listarContenido();
+        myModal1.hide();
     } else { (alert("Completar campos antes de guardar")) }
 }
 function eliminarProducto(index) {
@@ -108,9 +113,3 @@ const buscarProducto = () => {
 
     listarContenido();
 }
-
-
-
-
-
-
