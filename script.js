@@ -17,13 +17,13 @@ function listarContenido() {
         <tr>
                 <th scope="row">${index}</th>
                 <td>${item.modelo}</td>
-                <td>
-                    <button type="button" class="btn btn-secondary" onclick="setEditModal(${index})" data-bs-toggle="modal" >Editar</button>
-                    <button class="btn btn-danger" onclick="eliminarProducto(${index})">Eliminar</button>
-                </td>
                 <td>${item.estado}</td>
-                <td><img src="${item.imagen}"></img></td>
-                <td>${item.precio}</td>
+                <td><img src="${item.imagen}" class="w-25"></img></td>
+                <td>$${item.precio}</td>
+                <td>
+                    <button type="button" class="btn btn-secondary w-100 mb-2" onclick="setEditModal(${index})" data-bs-toggle="modal" >Editar</button>
+                    <button class="btn btn-danger w-100 mb-2" onclick="eliminarProducto(${index})">Eliminar</button>
+                </td>
             </tr>
         `
     });
@@ -105,11 +105,9 @@ listarContenido();
 
 const buscarProducto = () => {
     const word = document.querySelector('#busqueda').value;
-    console.log(word);
 
     tecnologia = JSON.parse(localStorage.getItem('contenido')) || [];
     tecnologia = tecnologia.filter(elemento => elemento.modelo.includes(word) || elemento.precio == word);
-    console.log(tecnologia)
 
     listarContenido();
 }

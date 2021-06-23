@@ -15,14 +15,14 @@
 </head>
 
 <body>
+    <button type="button" class="btn btn-success mt-2 ms-2" data-bs-toggle="modal" data-bs-target="#registerModal">Iniciar
+        Seccion</button>
+    <button type="button" class="btn btn-info mt-2 ms-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Ingresar</button>
+    <label></label>
+    <section class="mt-2 container">
+        <div id="newCard" class="row justify-content-center">
 
-    <section id="newCard">
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registerModal">Iniciar
-            Seccion</button>
-        <button type="button" class="btn btn-info" data-bs-toggle="modal"
-            data-bs-target="#exampleModal">Ingresar</button>
-        <label></label>
-
+        </div>
     </section>
     <div>
         <!-- MODAL REGISTRARSE -->
@@ -50,7 +50,7 @@
                                     Electronico</label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                                    <input type="text" class="form-control" id="email"
+                                    <input type="email" class="form-control" id="email"
                                         aria-describedby="inputGroupPrepend2" required>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                         <form>
                             <div class="mb-3">
                                 <label for="recipient-name" class="col-form-label">Email</label>
-                                <input type="text" class="form-control" id="emaila">
+                                <input type="email" class="form-control" id="emaila" required>
                             </div>
                             <div class="mb-3">
                                 <label for="message-text" class="col-form-label">Contraseña</label>

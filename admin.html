@@ -16,12 +16,12 @@
 
 <body>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <button type="button" class="btn btn-primary mt-2 ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Agregar
     </button>
     <!-- Buscador -->
-    <label for="fname">Buscador</label>
-    <input type="text" placeholder="Ej: Televisor" id="busqueda">
+    <label for="fname" class="mt-3 ms-3">Buscador</label>
+    <input type="text" placeholder="Ej: Televisor" id="busqueda" class="mt-2 ms-3">
     <button type="button" class="btn btn-primary" data-bs-target="#exampleModal" onclick="buscarProducto()">Buscar
         </buttontype></button>
     <!-- Buscador -->
@@ -31,9 +31,9 @@
                 <th scope="col">#</th>
                 <th scope="col">Modelo</th>
                 <th scope="col">Aciones</th>
-                <th scope="col">Estado</th>
                 <th scope="col">Imagen</th>
                 <th scope="col">Precio</th>
+                <th scope="col">Estado</th>
             </tr>
             </head>
         <tbody id="container">
